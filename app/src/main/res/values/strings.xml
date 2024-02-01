@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WalmartAssessment</string>
+    <string name="loading_information">Loading Information…</string>
+    <string name="topBar_title">Countries</string>
+</resources>
