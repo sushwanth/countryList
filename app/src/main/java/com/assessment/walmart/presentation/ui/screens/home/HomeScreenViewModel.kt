@@ -1,11 +1,12 @@
-package com.assessment.walmart.ui.screens.home
+package com.assessment.walmart.presentation.ui.screens.home
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.assessment.walmart.data.model.CountryDTO
-import com.assessment.walmart.data.repository.DataRepository
-import com.assessment.walmart.utils.getHttpErrorMessage
+import com.assessment.walmart.domain.model.Country
+import com.assessment.walmart.domain.usecase.GetCountriesUseCase
+import com.assessment.walmart.utils.Result
+import com.assessment.walmart.presentation.ui.utils.getHttpErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -23,12 +24,14 @@ sealed class UiState {
 }
 
 @HiltViewModel
-class HomeScreenViewModel @Inject constructor(private val dataRepo: DataRepository): ViewModel() {
+class HomeScreenViewModel @Inject constructor(
+    private val getCountriesUseCase: GetCountriesUseCase
+): ViewModel() {
     private val TAG = this.javaClass.simpleName
     private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
     val uiState = _uiState.asStateFlow()
 
-    private val _countriesList = MutableStateFlow(listOf<CountryDTO>())
+    private val _countriesList = MutableStateFlow(listOf<Country>())
     val countriesList = _countriesList.asStateFlow()
 
     init {
@@ -45,9 +48,19 @@ class HomeScreenViewModel @Inject constructor(private val dataRepo: DataReposito
             _uiState.value = UiState.Error(errorMessage)
         }
         viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-            val investmentList = dataRepo.getCountries()
-            _countriesList.value = investmentList
-            _uiState.value = UiState.Success
+            when (val result = getCountriesUseCase.execute()) {
+
+                is Result.Success -> {
+                    _countriesList.value = result.data
+                    _uiState.value = UiState.Success
+                }
+
+                is Result.Error -> {
+                    val exception = result.message
+                    Log.d(TAG, exception)
+                    _uiState.value = UiState.Error(exception)
+                }
+            }
         }
     }
 

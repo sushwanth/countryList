@@ -1,4 +1,4 @@
-package com.assessment.walmart.utils
+package com.assessment.walmart.presentation.ui.utils
 
 sealed class HttpErrorMessage(val message: String) {
     object BadRequest : HttpErrorMessage("Bad Request: The server could not understand the request")

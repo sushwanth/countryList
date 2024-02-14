@@ -1,5 +1,6 @@
 package com.assessment.walmart.data.model
 
+import com.assessment.walmart.domain.model.Country
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -29,7 +30,6 @@ data class CountryDTO(
         @SerialName("symbol")
         val symbol: String
     )
-
     @Serializable
     data class LanguageDTO(
         @SerialName("code")

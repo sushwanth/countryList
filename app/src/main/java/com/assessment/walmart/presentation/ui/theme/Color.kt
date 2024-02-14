@@ -1,4 +1,4 @@
-package com.assessment.walmart.ui.theme
+package com.assessment.walmart.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

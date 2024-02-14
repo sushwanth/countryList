@@ -1,5 +1,7 @@
 package com.assessment.walmart.utils
 
+import com.assessment.walmart.presentation.ui.utils.HttpErrorMessage
+import com.assessment.walmart.presentation.ui.utils.getHttpErrorMessage
 import org.junit.Test
 import org.junit.Assert.*
 

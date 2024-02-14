@@ -1,4 +1,4 @@
-package com.assessment.walmart.ui.screens.home
+package com.assessment.walmart.presentation.ui.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,8 +26,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.assessment.walmart.R
-import com.assessment.walmart.data.model.CountryDTO
-import com.assessment.walmart.ui.screens.home.UiState.Error
+import com.assessment.walmart.domain.model.Country
+import com.assessment.walmart.presentation.ui.screens.home.UiState.Error
 
 
 /**
@@ -93,7 +93,7 @@ fun HomeScreen(homeViewModel: HomeScreenViewModel = hiltViewModel()){
  * @param countryInfo An instance of CountryDTO
  */
 @Composable
-fun CountryInfoComposable(countryInfo: CountryDTO) {
+fun CountryInfoComposable(countryInfo: Country) {
     Card(
         modifier = Modifier.padding(3.dp)
     ){

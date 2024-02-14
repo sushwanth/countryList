@@ -1,4 +1,4 @@
-package com.assessment.walmart.ui
+package com.assessment.walmart.presentation.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,8 +9,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.assessment.walmart.ui.screens.home.HomeScreen
-import com.assessment.walmart.ui.theme.WalmartAssessmentTheme
+import com.assessment.walmart.presentation.ui.screens.home.HomeScreen
+import com.assessment.walmart.presentation.ui.theme.WalmartAssessmentTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
